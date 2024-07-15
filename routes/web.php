@@ -4,8 +4,18 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/test-mail', function (){
+    \Illuminate\Support\Facades\Mail::to('mahmudul209307@gmail.com')->send(
+        new \App\Mail\JobPosted()
+    );
+
+    return "done";
+});
+
+
 Route::view('/', 'home')->name('home');
 //Route::resource('jobs', JobController::class);
+
 
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
